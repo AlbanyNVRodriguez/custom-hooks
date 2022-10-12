@@ -4,15 +4,15 @@ export const useCounter = (value = 10) => {
 
     const [counter, setCounter] = useState(value);
 
-    const add = (value = 1) => setCounter(current => current + value);
-    const subtract = (value = 1) => setCounter(current => current - value);
-    const reset = () => setCounter(value);
+    const increase = (v = 1) => setCounter(current => current + v);
+    const decrease = (v = 1) => setCounter(current => current - v);
+    const reset = () => setCounter(v);
 
     return {
         setCounter,
         counter,
-        add,
-        subtract,
+        increase,
+        decrease,
         reset
     }
 }

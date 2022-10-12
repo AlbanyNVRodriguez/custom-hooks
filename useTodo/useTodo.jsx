@@ -1,9 +1,9 @@
-import { todoReducer } from "../../08.useReducer/todoReducer";
 import { useEffect, useReducer } from "react";
+import { todoReducer } from "./todoReducer";
 
 const init = () => JSON.parse(localStorage.getItem("todos")) || [];
 
-export const useTodo = (initialState) => {
+export const useTodo = (initialState = []) => {
 
     const [todos, dispatch] = useReducer(todoReducer, initialState, init);
 
@@ -13,23 +13,23 @@ export const useTodo = (initialState) => {
         const action = {
             type: "[TODO] add todo",
             payload: todo
-        }
+        };
         dispatch(action);
     };
 
     const handleToggleTodo = id => {
         const action = {
-            type: "[TODO] status todo",
+            type: "[TODO] toggle todo",
             payload: id
-        }
+        };
         dispatch(action);
     };
 
     const handleDeleteTodo = id => {
         const action = {
-            type: "[TODO] remove todo",
+            type: "[TODO] delete todo",
             payload: id
-        }
+        };
         dispatch(action);
     };
 
@@ -41,5 +41,5 @@ export const useTodo = (initialState) => {
         todosCount: todos.length, 
         todosPending: todos.filter( t => t.done == false).length, 
         todosCompleted: todos.filter( t => t.done == true).length
-    }
+    };
 }
